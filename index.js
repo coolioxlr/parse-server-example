@@ -47,22 +47,22 @@ var api = new ParseServer({
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
-var allowInsecureHTTP = true;
-var dashboard = new ParseDashboard({
-    // Parse Dashboard settings
-    "apps": [
-    {
-      "serverURL": "http://localhost:1337/parse",
-      "appId": "gymatic",
-      "masterKey": "123456",
-      "appName": "Gymatic"
-    }],
-    "users": [
-    {
-      "user":"coolioxlr",
-      "pass":"123456"
-    }]
-}, allowInsecureHTTP);
+// var allowInsecureHTTP = true;
+// var dashboard = new ParseDashboard({
+//     // Parse Dashboard settings
+//     "apps": [
+//     {
+//       "serverURL": "http://localhost:1337/parse",
+//       "appId": "gymatic",
+//       "masterKey": "123456",
+//       "appName": "Gymatic"
+//     }],
+//     "users": [
+//     {
+//       "user":"coolioxlr",
+//       "pass":"123456"
+//     }]
+// }, allowInsecureHTTP);
 
 var app = express();
 
