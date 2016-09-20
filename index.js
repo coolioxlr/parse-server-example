@@ -50,6 +50,18 @@ var api = new ParseServer({
 var allowInsecureHTTP = true;
 var dashboard = new ParseDashboard({
     // Parse Dashboard settings
+    "apps": [
+    {
+      "serverURL": "http://localhost:1337/parse",
+      "appId": "gymatic",
+      "masterKey": "123456",
+      "appName": "Gymatic"
+    }],
+    "users": [
+    {
+      "user":"coolioxlr",
+      "pass":"123456"
+    }]
 }, allowInsecureHTTP);
 
 var app = express();
