@@ -17,7 +17,7 @@ var api = new ParseServer({
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'gymatic',
   masterKey: process.env.MASTER_KEY || '123456', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
+  serverURL: process.env.SERVER_URL || 'http://parse-gym.0ec9.hackathon.openshiftapps.com/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
@@ -27,7 +27,18 @@ var api = new ParseServer({
 // javascriptKey, restAPIKey, dotNetKey, clientKey
 var allowInsecureHTTP = true;
 var dashboard = new ParseDashboard({
-    // Parse Dashboard settings
+    "apps": [{
+      "serverURL": "http://parse-gym.0ec9.hackathon.openshiftapps.com/parse", // Hosted on Parse.com
+      "appId": "gymatic",
+      "masterKey": "123456",
+      "restKey": "myRestKey",
+      "appName": "Gymatic"
+    }],
+    "users": [
+     {
+       "user":"coolioxlr",
+       "pass":"123456"
+     } ]
 }, allowInsecureHTTP);
 
 var app = express();
