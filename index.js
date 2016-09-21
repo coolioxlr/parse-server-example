@@ -6,30 +6,8 @@ var ParseServer = require('parse-server').ParseServer;
 var ParseDashboard = require('parse-dashboard');
 var path = require('path');
 
-var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI,
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
+var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
     
-if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
-  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
-      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
-      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-      mongoUser = process.env[mongoServiceName + '_USER'];
-
-  if (mongoHost && mongoPort && mongoDatabase) {
-    mongoURLLabel = mongoURL = 'mongodb://';
-    if (mongoUser && mongoPassword) {
-      mongoURL += mongoUser + ':' + mongoPassword + '@';
-    }
-    // Provide UI label that excludes user id and pw
-    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
-  }
-}
-
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
@@ -47,22 +25,22 @@ var api = new ParseServer({
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
-// var allowInsecureHTTP = true;
-// var dashboard = new ParseDashboard({
-//     // Parse Dashboard settings
-//     "apps": [
-//     {
-//       "serverURL": "http://localhost:1337/parse",
-//       "appId": "gymatic",
-//       "masterKey": "123456",
-//       "appName": "Gymatic"
-//     }],
-//     "users": [
-//     {
-//       "user":"coolioxlr",
-//       "pass":"123456"
-//     }]
-// }, allowInsecureHTTP);
+var allowInsecureHTTP = true;
+var dashboard = new ParseDashboard({
+    // Parse Dashboard settings
+    "apps": [
+    {
+      "serverURL": "http://localhost:1337/parse",
+      "appId": "gymatic",
+      "masterKey": "123456",
+      "appName": "Gymatic"
+    }],
+    "users": [
+    {
+      "user":"coolioxlr",
+      "pass":"123456"
+    }]
+}, allowInsecureHTTP);
 
 var app = express();
 
