@@ -13,7 +13,7 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-  databaseURI: mongoURLLabel || databaseUri || 'mongodb://localhost:27017/dev',
+  databaseURI: databaseUri || 'mongodb://coolioxlr:123456@ds035766.mlab.com:35766/gymatic',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'gymatic',
   masterKey: process.env.MASTER_KEY || '123456', //Add your master key here. Keep it secret!
@@ -28,18 +28,6 @@ var api = new ParseServer({
 var allowInsecureHTTP = true;
 var dashboard = new ParseDashboard({
     // Parse Dashboard settings
-    "apps": [
-    {
-      "serverURL": "http://localhost:1337/parse",
-      "appId": "gymatic",
-      "masterKey": "123456",
-      "appName": "Gymatic"
-    }],
-    "users": [
-    {
-      "user":"coolioxlr",
-      "pass":"123456"
-    }]
 }, allowInsecureHTTP);
 
 var app = express();
